@@ -6,3 +6,4 @@ IOiS 2020
 Michał Kleszczyński
 Piotr Boszczyk
 Patrycja Bartkowicz
+Joanna Rychlicka
