@@ -7,3 +7,4 @@ Michał Kleszczyński
 Piotr Boszczyk
 Patrycja Bartkowicz
 Joanna Rychlicka
+Kamil Nowak
