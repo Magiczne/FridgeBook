@@ -8,3 +8,4 @@ Piotr Boszczyk
 Patrycja Bartkowicz
 Joanna Rychlicka
 Kamil Nowak
+Marcin Wrotecki
