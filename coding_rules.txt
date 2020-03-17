@@ -1,0 +1,6 @@
+Code formatting: pep8 with 120 line length. PyCharm configuration in the repository.
+Language: ALL in english
+Name conventions:
+- naming conventions in code follow pep8
+- words in branch names are separated with '-' (kebab case)
+Code segregation (modularization) conventions: grouping by functionality
