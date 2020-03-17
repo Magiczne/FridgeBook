@@ -12,7 +12,3 @@ Kamil Nowak
 Marcin Wrotecki
 Filip Raszka
 
-
-
-
-
