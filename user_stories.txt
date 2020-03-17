@@ -1,15 +1,15 @@
-- User should be able to access the usable application through Internet.
-- System should have a functionality of creating an account for every user.
+- [8] User should be able to access the usable application through Internet.
+- [13] System should have a functionality of creating an account for every user.
     User can go to registration form.
-- User should be able to add notes, which will be visible for other users.
+- [8] User should be able to add notes, which will be visible for other users.
     Notes available for everyone in the system.
-- User should be able to mark notes as read.
-- User should have a possibility of being notified about already read notes by another user.
-- User should be able to remove the note from the fridge so that it won't be visible nor accessible in the future.
-- User should be able to view all his previous notes.
-- User should be able to edit his notes.
-- User should be able to download notes which are currently available in markdown format.
-- User should be able to create virtual fridge on which he could share notes with others.
-- User should be able to synchronize notes with google keep.
-- Notes should have a date of addition, but only in database.
-- Admin should be able to manage users
+- [8] User should be able to mark notes as read.
+- [20] User should have a possibility of being notified about already read notes by another user.
+- [13] User should be able to remove the note from the fridge so that it won't be visible nor accessible in the future.
+- [13] User should be able to view all his previous notes.
+- [13] User should be able to edit his notes.
+- [40] User should be able to download notes which are currently available in markdown format.
+- [100] User should be able to create virtual fridge on which he could share notes with others.
+- [100] User should be able to synchronize notes with google keep.
+- [5] Notes should have a date of addition, but only in database.
+- [5] Admin should be able to manage users
