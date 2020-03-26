@@ -6,7 +6,7 @@ def no_of_bits_1(numbers: str) -> int:
     if not len(numbers):
         return 0
 
-    if not re.match(r"^[0-9a-f;\s\$]+$", numbers):
+    if not re.match(r"^[0-9a-f;\s$]+$", numbers):
         raise ValueError(f'String {numbers} contains invalid delimiters')
 
     delimiters: List[str] = [';', '\s+']
