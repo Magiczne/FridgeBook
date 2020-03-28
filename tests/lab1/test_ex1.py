@@ -1,4 +1,7 @@
 import unittest
+
+import pytest
+
 from lab1.ex1 import Calculator
 
 
@@ -24,6 +27,14 @@ class TestStringCalculator(unittest.TestCase):
         c = Calculator()
         self.assertEqual(c.add("//;\n1;2"), 3)
         self.assertEqual(c.add("//;\n1;2;4"), 7)
+
+    def test_should_throw_exception_when_negative_numbers_are_used(self):
+        c = Calculator()
+        with pytest.raises(Exception, match="negatives not allowed: -1"):
+            c.add("1,2,-1")
+
+        with pytest.raises(Exception, match="negatives not allowed: -2,-4"):
+            c.add("//;\n1;-2;-4")
 
 
 if __name__ == '__main__':
