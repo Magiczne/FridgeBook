@@ -13,3 +13,5 @@ c) Function argument can contain many numbers.
 
 Function signature changes to number-of_bits(numbers: str).
 Numbers are separated by ";".
+
+d) Numbers can be separated by ";" and " ".
