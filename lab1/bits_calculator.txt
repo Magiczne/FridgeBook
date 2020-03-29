@@ -19,3 +19,7 @@ d) Numbers can be separated by ";" and " ".
 e) Numbers can be separated by ";" and whitespaces.
 
 f) If numbers uses incorrect delimiter the function must raise an exception.
+
+g) Numbers passed to function can be in 10 and 16 representation.
+
+Hexadecimal representation: $ff.

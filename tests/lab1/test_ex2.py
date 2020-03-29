@@ -53,6 +53,14 @@ class TestBitsCalculator(unittest.TestCase):
         with pytest.raises(Exception, match="delimiter must be whitespace or ;"):
             number_of_bits("1str2\t3;4")
 
+    def test_correct_hexadecimal(self):
+        self.assertEqual(number_of_bits("$ff $2"), 9)
+        self.assertEqual(number_of_bits("$4;6 7"), 6)
+        with pytest.raises(Exception, match="number must be between 0 and 255, received: -2"):
+            number_of_bits("1;$-2")
+        with pytest.raises(Exception, match="delimiter must be whitespace or ;"):
+            number_of_bits("$1str2\t3;4")
+
 
 if __name__ == '__main__':
     unittest.main()
