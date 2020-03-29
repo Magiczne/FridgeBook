@@ -6,3 +6,5 @@ a) Implement function number_of_bits(string number)
 
 Function returns number of "1" in binary representation of argument.
 For an empty string it returns 0.
+
+b) Function should raise an exception for 0 > number > 255.
