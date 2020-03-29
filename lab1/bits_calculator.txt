@@ -15,3 +15,5 @@ Function signature changes to number-of_bits(numbers: str).
 Numbers are separated by ";".
 
 d) Numbers can be separated by ";" and " ".
+
+e) Numbers can be separated by ";" and whitespaces.

@@ -1,9 +1,5 @@
-import re
-
-
 def number_of_bits(numbers: str):
-    delimiters = [";", " "]
-    numbers = re.split("|".join(delimiters), numbers)
+    numbers = numbers.replace(";", " ").split()
     numbers = [int(x) for x in numbers if x != ""]
     incorrect_numbers = [x for x in numbers if x < 0 or x > 255]
     if len(incorrect_numbers) != 0:

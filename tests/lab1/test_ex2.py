@@ -39,6 +39,12 @@ class TestBitsCalculator(unittest.TestCase):
         with pytest.raises(Exception, match="number must be between 0 and 255, received: -2"):
             number_of_bits("1 -2")
 
+    def test_whitespaces_as_delimiter(self):
+        self.assertEqual(number_of_bits("1\n2\t0"), 2)
+        self.assertEqual(number_of_bits("4;6 7\n1"), 7)
+        with pytest.raises(Exception, match="number must be between 0 and 255, received: -2,-3,-4"):
+            number_of_bits("1\n-2\t-3;-4")
+
 
 if __name__ == '__main__':
     unittest.main()
