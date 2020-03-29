@@ -1,6 +1,6 @@
 Bits Calculator
 
-a) Implement function number_of_bits(string number)
+a) Implement function number_of_bits(number: str)
 
 0 <= number <= 255
 
@@ -8,3 +8,8 @@ Function returns number of "1" in binary representation of argument.
 For an empty string it returns 0.
 
 b) Function should raise an exception for 0 > number > 255.
+
+c) Function argument can contain many numbers.
+
+Function signature changes to number-of_bits(numbers: str).
+Numbers are separated by ";".
