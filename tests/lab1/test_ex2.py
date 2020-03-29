@@ -45,6 +45,14 @@ class TestBitsCalculator(unittest.TestCase):
         with pytest.raises(Exception, match="number must be between 0 and 255, received: -2,-3,-4"):
             number_of_bits("1\n-2\t-3;-4")
 
+    def test_incorrect_delimiters(self):
+        with pytest.raises(Exception, match="delimiter must be whitespace or ;"):
+            number_of_bits("1.2\t3;4")
+        with pytest.raises(Exception, match="delimiter must be whitespace or ;"):
+            number_of_bits("1s2\t3;4")
+        with pytest.raises(Exception, match="delimiter must be whitespace or ;"):
+            number_of_bits("1str2\t3;4")
+
 
 if __name__ == '__main__':
     unittest.main()
