@@ -1,0 +1,8 @@
+Bits Calculator
+
+a) Implement function number_of_bits(string number)
+
+0 <= number <= 255
+
+Function returns number of "1" in binary representation of argument.
+For an empty string it returns 0.
