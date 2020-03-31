@@ -15,4 +15,5 @@ class Calculator:
         if len(negative_numbers) > 0:
             raise Exception("negatives not allowed: " + ",".join([str(x) for x in negative_numbers]))
 
+
         return sum(split_numbers)
