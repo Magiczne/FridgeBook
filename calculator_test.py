@@ -48,6 +48,17 @@ class MyTestCase(unittest.TestCase):
             # Assert
             self.assertEqual(out, result)
 
+    def test_should_throw_an_exception_when_negative_numbers_are_used(self):
+        data = ["1,2,-1", "//;\n1;-2;-4"]
+        expected = ["-1", "-2,-4"]
+        # Arrange
+        calc = calculator.Calculator()
+        # Act
+        for (inp, out) in zip(data, expected):
+            # Assert
+            with self.assertRaises(Exception, match="negatives not allowed: " + out):
+                calc.add(inp)
+
 
 if __name__ == '__main__':
     unittest.main()
