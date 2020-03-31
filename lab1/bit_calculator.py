@@ -1,7 +1,11 @@
 from functools import reduce
+import re
 
 
 def number_of_bits(numbers: str):
+    if not len(numbers):
+        return 0
+
     numbers = numbers.replace(";", " ").split()
 
     try:
