@@ -1,7 +1,9 @@
 import unittest
+
+import pytest
 from parameterized import parameterized
 
-from .calculator import Calculator
+from cw_nr_2.calculator import Calculator
 
 
 class CalculatorTests(unittest.TestCase):
@@ -43,16 +45,14 @@ class CalculatorTests(unittest.TestCase):
         self.assertEqual(expected_result, result)
 
     @parameterized.expand([
-        ["-1\n2,3", [-1]],
-        ["//[;]\n1;2;-1", [-1]],
-        ["//[;]\n1;2;-2;4;-1", [-2, -1]],
+        ["-1\n2,3", "negatives not allowed: -1"],
+        ["//[;]\n1;2;-1", "negatives not allowed: -1"],
+        ["//[;]\n1;2;-2;4;-1", "negatives not allowed: -2,-1"],
     ])
     def test_add_numbers_with_negatives(self, numbers, expected_result):
-        with self.assertRaises(Exception) as context:
+        with pytest.raises(ValueError, match=expected_result):
             calculator = Calculator()
             result = calculator.add(numbers)
-
-        self.assertTrue('Negatives not allowed - '+str(expected_result) in str(context.exception))
 
     @parameterized.expand([
         ["1\n2,3,1001", 6],

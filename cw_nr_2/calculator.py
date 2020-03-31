@@ -2,7 +2,7 @@
 def throw_exception_if_containts_negatives(split_numbers):
     negative_numbers = list(filter(lambda x: x < 0, split_numbers))
     if len(negative_numbers) > 0:
-        raise Exception("Negatives not allowed - " + str(negative_numbers))
+        raise ValueError("negatives not allowed: " + ",".join([str(x) for x in negative_numbers]))
 
 
 class Calculator():

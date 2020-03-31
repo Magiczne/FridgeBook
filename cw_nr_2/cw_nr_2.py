@@ -1,50 +1,26 @@
-
 import re
-
-
-def get_no_of_1(number_raw: str):
-    if number_raw == "":
-        return 0
-
-    raise_exception_if_wfon_format(number_raw)
-
-    int_num = convert_to_decimal(number_raw)
-
-    raise_exception_if_out_of_range(int_num)
-
-    bin_num = format(int_num, "b")
-    return len(list(filter(lambda x: x == '1', list(bin_num))))
-
-
-def raise_exception_if_wfon_format(number_raw):
-    if not ((number_raw.startswith('-') and number_raw[1:].isdigit()) or number_raw.isdigit() or number_raw.startswith(
-            '$')):
-        raise Exception('Wrong delimiter used during parse')
-
-
-def raise_exception_if_out_of_range(int_num):
-    if int_num < 0 or int_num > 255:
-        raise Exception('Number out of range')
-
-
-def convert_to_decimal(number_raw):
-    if number_raw.startswith('$'):
-        int_num = int(number_raw[1:], 16)
-    else:
-        int_num = int(number_raw)
-    return int_num
 
 
 class CwNr2:
 
     @staticmethod
-    def no_of_bits_1(numbers_raw: str):
-        semicolon = ";"
-        if numbers_raw == "":
+    def no_of_bits_1(numbers: str):
+        if not len(numbers):
             return 0
+        if not re.match(r"^[0-9a-f;\s$]+$", numbers):
+            raise ValueError("delimiter must be whitespace or ;")
+        numbers = numbers.replace(";", " ").split()
 
-        split_numbers = list(re.sub("\s+", semicolon, numbers_raw.strip()).split(semicolon))
+        hex_numbers = [int(x[1:], 16) for x in numbers if x != "" and x.startswith("$")]
+        numbers = [int(x) for x in numbers if x != "" and not x.startswith("$")]
 
-        result = sum(map(lambda x: get_no_of_1(x), split_numbers))
+        numbers += hex_numbers
+        incorrect_numbers = [x for x in numbers if x < 0 or x > 255]
+        if len(incorrect_numbers) != 0:
+            raise ValueError(
+                "number must be between 0 and 255")
+        bits = 0
+        for number in numbers:
+            bits += len([ones for ones in bin(number)[2:] if ones == "1"])
+        return bits
 
-        return result

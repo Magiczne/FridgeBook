@@ -1,4 +1,6 @@
 import unittest
+
+import pytest
 from parameterized import parameterized
 
 from .cw_nr_2 import CwNr2
@@ -17,15 +19,12 @@ class CwNr2Tests(unittest.TestCase):
         self.assertEqual(expected_result, res)
 
     @parameterized.expand([
-        ["-1", 'Number out of range'],
-        ["256", 'Number out of range'],
-        ["1000", 'Number out of range'],
+        ["256", 'number must be between 0 and 255'],
+        ["1000", 'number must be between 0 and 255'],
     ])
-    def test_no_of_bits_1s_raise_exception(self, number, expected_result):
-        with self.assertRaises(Exception) as context:
-            res = CwNr2.no_of_bits_1(number)
-
-        self.assertTrue(expected_result in str(context.exception))
+    def test_no_of_bits_1s_raise_exception(self, numbers, expected_result):
+        with pytest.raises(ValueError, match=expected_result):
+            res = CwNr2.no_of_bits_1(numbers)
 
     @parameterized.expand([
       ["", 0],
@@ -43,7 +42,7 @@ class CwNr2Tests(unittest.TestCase):
             ["", 0],
             ["1 0", 1],
             ["10\n10", 4],
-            ["1;1 1", 3],
+            ["1\t1 1", 3],
             ["3;3\n3", 6],
     ])
     def test_no_of_bits_1s_with_whitespace_delimiters(self, number, expected_result):
@@ -51,15 +50,13 @@ class CwNr2Tests(unittest.TestCase):
         self.assertEqual(expected_result, res)
 
     @parameterized.expand([
-            ["xd",'Wrong delimiter used during parse'],
-            ["1;2,3 1 xd",'Wrong delimiter used during parse'],
-            ["a3;3\n3", 'Wrong delimiter used during parse'],
+            ["xd",'delimiter must be whitespace or ;'],
+            ["1;2,3 1 xd",'delimiter must be whitespace or ;'],
+            ["a3;3*3^2", 'delimiter must be whitespace or ;'],
     ])
-    def test_no_of_bits_1s_with_wrong_delimiter(self, number, expected_exception):
-        with self.assertRaises(Exception) as context:
-            res = CwNr2.no_of_bits_1(number)
-
-        self.assertTrue(expected_exception in str(context.exception))
+    def test_no_of_bits_1s_with_wrong_delimiter(self, numbers, expected_exception):
+        with pytest.raises(ValueError, match=expected_exception):
+            res = CwNr2.no_of_bits_1(numbers)
 
     @parameterized.expand([
         ["$0", 0],
