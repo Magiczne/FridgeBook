@@ -15,7 +15,7 @@ class Calculator:
         separated_numbers = [int(x) for x in separated_numbers]
         negative_numbers = [x for x in separated_numbers if x < 0]
 
-        if len(negative_numbers) > 0:
+        if len(negative_numbers):
             raise Exception("negative numbers are not allowed: " + ",".join([str(x) for x in negative_numbers]))
 
         return sum(separated_numbers)
