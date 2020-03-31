@@ -15,5 +15,6 @@ class Calculator:
         if len(negative_numbers) > 0:
             raise Exception("negatives not allowed: " + ",".join([str(x) for x in negative_numbers]))
 
+        split_numbers = list(filter(lambda x: x < 1000, split_numbers))
 
         return sum(split_numbers)

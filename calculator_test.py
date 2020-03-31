@@ -56,8 +56,9 @@ class MyTestCase(unittest.TestCase):
         # Act
         for (inp, out) in zip(data, expected):
             # Assert
-            with self.assertRaises(Exception, match="negatives not allowed: " + out):
+            with self.assertRaises(Exception) as err:
                 calc.add(inp)
+                self.assertEqual(str(err.exception), str("negatives not allowed: " + out))
 
     def test_add_adds_numbers_greater_than_thousand_are_ignored_when_string_is_valid(self):
         data = ["2,1001", "1005,1001"]
@@ -68,9 +69,7 @@ class MyTestCase(unittest.TestCase):
         for (inp, out) in zip(data, expected):
             # Assert
             result = calc.add(inp)
-            # Assert
             self.assertEqual(out, result)
-
 
 
 if __name__ == '__main__':
