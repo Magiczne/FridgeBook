@@ -71,6 +71,17 @@ class MyTestCase(unittest.TestCase):
             result = calc.add(inp)
             self.assertEqual(out, result)
 
+    def test_add_adds_number_when_new_format_and_string_is_valid(self):
+        data = [" // [ ** *]\n1 ** * 2 ** * 3"]
+        expected = [6]
+        # Arrange
+        calc = calculator.Calculator()
+        # Act
+        for (inp, out) in zip(data, expected):
+            # Assert
+            result = calc.add(inp)
+            self.assertEqual(out, result)
+
 
 if __name__ == '__main__':
     unittest.main()
