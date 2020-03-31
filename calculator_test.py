@@ -37,5 +37,17 @@ class MyTestCase(unittest.TestCase):
             # Assert
             self.assertEqual(out, result)
 
+    def test_add_adds_numbers_using_custom_delimiter_when_string_is_valid(self):
+        data = ["//;\n1;2", "//;\n1;2;4"]
+        expected = [3, 7]
+        # Arrange
+        calc = calculator.Calculator()
+        # Act
+        for (inp, out) in zip(data, expected):
+            result = calc.add(inp)
+            # Assert
+            self.assertEqual(out, result)
+
+
 if __name__ == '__main__':
     unittest.main()
