@@ -9,10 +9,8 @@ class Calculator:
         split_numbers = numbers.replace("\n", ',').split(",")
         split_numbers = list(filter(None, split_numbers))
         split_numbers = list(map(int, split_numbers))
-        negative_numbers = list()
-        for x in split_numbers:
-            if x < 0:
-                negative_numbers.append(x)
+
+        negative_numbers = [x for x in split_numbers if x < 0]
 
         if len(negative_numbers) > 0:
             raise Exception("negatives not allowed: " + ",".join([str(x) for x in negative_numbers]))
