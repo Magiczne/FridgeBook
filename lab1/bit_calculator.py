@@ -13,7 +13,7 @@ def number_of_bits(numbers: str):
     numbers += hex_numbers
     incorrect_numbers = [x for x in numbers if x < 0 or x > 255]
 
-    if len(incorrect_numbers) != 0:
+    if len(incorrect_numbers):
         raise Exception("number must be between 0 and 255, received: " + ",".join([str(x) for x in incorrect_numbers]))
 
     return reduce(lambda x, y: x + len([ones for ones in bin(y)[2:] if ones == "1"]), numbers, 0)
