@@ -2,7 +2,7 @@ class Calculator:
     def add(self, numbers: str) -> int:
 
         numbers = numbers.strip()
-        delimiter = ["//", ";", '*', ']', '[', ',', "\n"]
+        delimiter = ["//", ";", '*', ']', '[', ',', "\n", "%"]
         for i in delimiter:
             numbers = numbers.replace(i, " ")
         numbers = " ".join(numbers.split())
