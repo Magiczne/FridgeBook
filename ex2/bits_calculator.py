@@ -1,6 +1,6 @@
 class BitsCalculator:
     def count_no_of_bits_1(self, numbers: str) -> int:
-        
+
         given_numbers = numbers.replace(";", " ").split()
         given_numbers = list(filter(None, given_numbers))
         given_numbers = list(map(int, given_numbers))

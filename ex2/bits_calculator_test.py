@@ -60,6 +60,20 @@ class MyTestCase(unittest.TestCase):
         # Assert
         self.assertEqual(expected, result)
 
+    @parameterized.expand([
+        ["16\t\t 80", 3],
+        ["40\t \t \t \t3;72", 6],
+        ["128   \n 32;    64", 3]
+    ])
+    def test_count_no_of_bits_returns_number_of_ones_when__when_delimiter_is_white_char_or_semicolon(self, numbers,
+                                                                                                     expected):
+        # Arrange
+        bits_calculator = BitsCalculator()
+        # Act
+        result = bits_calculator.count_no_of_bits_1(numbers)
+        # Assert
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
