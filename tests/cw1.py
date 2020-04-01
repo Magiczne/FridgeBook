@@ -28,6 +28,16 @@ class TestStringCalculator(unittest.TestCase):
         result = calculator.add(numbers)
         self.assertEqual(expected, result)
 
+    @parameterized.expand([
+        ["5,7\n10", 22],
+        ["1\n3,5\n8", 17],
+    ])
+    def test_add_with_newline_delim_valid(self, numbers, expected):
+        calculator = Calculator()
+
+        result = calculator.add(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
