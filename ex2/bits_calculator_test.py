@@ -87,6 +87,19 @@ class MyTestCase(unittest.TestCase):
             # Act
             bits_calculator.count_no_of_bits_1(numbers)
 
+    @parameterized.expand([
+        ["$ba", 5],
+        ["$56;17\n\n30", 10],
+        ["$2a;5\t\t7 $8", 8]
+    ])
+    def test_count_no_of_bits_return_proper_number_of_ones_when_number_is_hexadecimal(self, numbers, expected):
+        # Arrange
+        bits_calculator = BitsCalculator()
+        # Act
+        result = bits_calculator.count_no_of_bits_1(numbers)
+        # Assert
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
