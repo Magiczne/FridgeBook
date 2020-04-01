@@ -1,5 +1,5 @@
 import unittest
-import calculator
+from ex1 import calculator
 
 
 class MyTestCase(unittest.TestCase):
@@ -92,6 +92,7 @@ class MyTestCase(unittest.TestCase):
             # Assert
             result = calc.add(inp)
             self.assertEqual(out, result)
+
 
 if __name__ == '__main__':
     unittest.main()
