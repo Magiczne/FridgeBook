@@ -51,7 +51,7 @@ class MyTestCase(unittest.TestCase):
         ["9;12 10", 6],
         ["128 32;64", 3]
     ])
-    def test_count_no_of_bits_returns_number_of_ones_when_is_given_more_numbers_when_delimiter_is_space_or_semicolon(
+    def test_count_no_of_bits_when_is_given_more_numbers_and_when_delimiter_is_space_or_semicolon(
             self, numbers, expected):
         # Arrange
         bits_calculator = BitsCalculator()
@@ -65,8 +65,8 @@ class MyTestCase(unittest.TestCase):
         ["40\t \t \t \t3;72", 6],
         ["128   \n 32;    64", 3]
     ])
-    def test_count_no_of_bits_returns_number_of_ones_when__when_delimiter_is_white_char_or_semicolon(self, numbers,
-                                                                                                     expected):
+    def test_count_no_of_bits_when_delimiter_is_white_char_or_semicolon(self, numbers,
+                                                                        expected):
         # Arrange
         bits_calculator = BitsCalculator()
         # Act
