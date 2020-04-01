@@ -33,6 +33,19 @@ class MyTestCase(unittest.TestCase):
             # Act
             bits_calculator.count_no_of_bits_1(number)
 
+    @parameterized.expand([
+        ["255;7", 11],
+        ["1;5", 3],
+        ["128;32", 2]
+    ])
+    def test_count_no_of_bits_returns_number_of_ones_when_is_given_more_numbers(self, numbers, expected):
+        # Arrange
+        bits_calculator = BitsCalculator()
+        # Act
+        result = bits_calculator.count_no_of_bits_1(numbers)
+        # Assert
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
