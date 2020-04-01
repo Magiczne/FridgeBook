@@ -3,8 +3,10 @@ class BitsCalculator:
         if number == "":
             return 0
         given_number = int(number)
+
         if given_number > 255:
             raise Exception("Number is greater than 255")
+       
         result = 0
         while given_number:
             temp = given_number % 2
