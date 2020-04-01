@@ -51,6 +51,17 @@ class TestStringCalculator(unittest.TestCase):
         result = calculator.calculate(numbers)
         self.assertEqual(expected, result)
 
+    @parameterized.expand([
+        ["2 4\n\n  \t8", 3],
+        ["3   7", 5],
+        ["1\t1 1  1 0 \t 3 1\n \t3", 9],
+    ])
+    def test_calculate_should_calculate_no_of_1_accept_whitechars_as_delims_for_valid(self, numbers, expected):
+        calculator = NoBitsCalculator()
+
+        result = calculator.calculate(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()

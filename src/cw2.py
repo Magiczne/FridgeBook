@@ -5,7 +5,7 @@ from typing import List
 class NoBitsCalculator(object):
 
     def __init__(self):
-        self.delims = [';', ' ']
+        self.delims = [';', '\s+']
 
     def calculate(self, numbers: str) -> int:
         if not numbers:
