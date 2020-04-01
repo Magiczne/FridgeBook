@@ -1,5 +1,6 @@
 import unittest
 
+import pytest
 from parameterized import parameterized
 
 from src.cw2 import NoBitsCalculator
@@ -17,6 +18,16 @@ class TestStringCalculator(unittest.TestCase):
 
         result = calculator.calculate(numbers)
         self.assertEqual(expected, result)
+
+    @parameterized.expand([
+        ["-1"],
+        ["256"],
+        ["10200"],
+    ])
+    def test_calculate_invalid_number_should_rise_error(self, invalid_number):
+        calculator = NoBitsCalculator()
+        with pytest.raises(ValueError, match=f"Incorrect value: {invalid_number}"):
+            calculator.calculate(invalid_number)
 
 
 if __name__ == '__main__':
