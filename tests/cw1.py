@@ -60,6 +60,16 @@ class TestStringCalculator(unittest.TestCase):
         with pytest.raises(ValueError, match=f"Negative numbers present: {detected_negatives}"):
             calculator.add(numbers)
 
+    @parameterized.expand([
+        ["5,7,10, 5000", 22],
+        ["1,3,5,8, 3000", 17]
+    ])
+    def test_add_with_ignore_numbers_over_1000_valid(self, numbers, expected):
+        calculator = Calculator()
+
+        result = calculator.add(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()

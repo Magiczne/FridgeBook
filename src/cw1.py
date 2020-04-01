@@ -24,4 +24,4 @@ class Calculator(object):
             negative_numbers_info = f"Negative numbers present: {negative_numbers}".replace('[', '').replace(']', '')
             raise ValueError(f"Negative numbers present: {negative_numbers_info}")
 
-        return sum([number for number in int_numbers])
+        return sum([number for number in int_numbers if number <= 1000])
