@@ -90,7 +90,7 @@ class MyTestCase(unittest.TestCase):
     @parameterized.expand([
         ["$ba", 5],
         ["$56;17\n\n30", 10],
-        ["$2a;5\t\t7 $8", 8]
+        ["$2a;5\t\t7 $8", 9]
     ])
     def test_count_no_of_bits_return_proper_number_of_ones_when_number_is_hexadecimal(self, numbers, expected):
         # Arrange
