@@ -72,6 +72,17 @@ class TestStringCalculator(unittest.TestCase):
         with pytest.raises(ValueError, match=f"Incorrect input format"):
             calculator.calculate(invalid_numbers)
 
+    @parameterized.expand([
+        ["2;$a;$b", 6],
+        ["$3;7;$1f", 10],
+        ["1;1;1;$1;$0;$c", 6],
+    ])
+    def test_calculate_should_calculate_no_of_1_accept_hexes_for_valid(self, numbers, expected):
+        calculator = NoBitsCalculator()
+
+        result = calculator.calculate(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()

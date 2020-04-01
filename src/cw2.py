@@ -5,7 +5,7 @@ from typing import List
 class NoBitsCalculator(object):
 
     def __init__(self):
-        self.general_regex = r"^[0-9;\s]*$"
+        self.general_regex = r"^[0-9a-f;\s\$]*$"
         self.delims = [';', '\s+']
 
     def calculate(self, numbers: str) -> int:
@@ -22,7 +22,10 @@ class NoBitsCalculator(object):
     def get_validated_numbers(self, str_numbers: List[str]):
         numbers = []
         for str_number in str_numbers:
-            int_number = int(str_number)
+            if str_number.startswith("$"):
+                int_number = int(str_number.replace("$", ""), 16)
+            else:
+                int_number = int(str_number)
 
             if int_number > 255 or int_number < 0:
                 raise ValueError(f"Incorrect value: {int_number}")
