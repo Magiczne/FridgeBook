@@ -1,5 +1,6 @@
 import unittest
 
+import pytest
 from parameterized import parameterized
 
 from src.cw1 import Calculator
@@ -48,6 +49,16 @@ class TestStringCalculator(unittest.TestCase):
 
         result = calculator.add(numbers)
         self.assertEqual(expected, result)
+
+    @parameterized.expand([
+        ["//\n1,-3,5\n8", "-3"],
+        ["-1,3,5\n-8", "-1, -8"],
+        ["-1,-3,-5\n8", "-1, -3, -5"],
+    ])
+    def test_add_should_throw_exception_when_negative_numbers_are_used(self, numbers, detected_negatives):
+        calculator = Calculator()
+        with pytest.raises(ValueError, match=f"Negative numbers present: {detected_negatives}"):
+            calculator.add(numbers)
 
 
 if __name__ == '__main__':

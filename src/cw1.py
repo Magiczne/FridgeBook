@@ -1,6 +1,3 @@
-import re
-
-
 class Calculator(object):
 
     def __init__(self):
@@ -20,4 +17,11 @@ class Calculator(object):
             numbers = numbers.replace(delim, ',')
 
         split_numbers = numbers.split(',')
-        return sum([int(number) for number in split_numbers])
+        int_numbers = [int(number) for number in split_numbers]
+        negative_numbers = list(filter(lambda x: x < 0, int_numbers))
+
+        if len(negative_numbers):
+            negative_numbers_info = f"Negative numbers present: {negative_numbers}".replace('[', '').replace(']', '')
+            raise ValueError(f"Negative numbers present: {negative_numbers_info}")
+
+        return sum([number for number in int_numbers])
