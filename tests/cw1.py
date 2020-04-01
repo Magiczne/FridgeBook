@@ -38,6 +38,17 @@ class TestStringCalculator(unittest.TestCase):
         result = calculator.add(numbers)
         self.assertEqual(expected, result)
 
+    @parameterized.expand([
+        ["//\n1,3,5\n8", 17],
+        ["//;\n1,3;5\n8", 17],
+        ["//.;\n1.3;5,10\n8", 27],
+    ])
+    def test_add_with_custom_delims_valid(self, numbers, expected):
+        calculator = Calculator()
+
+        result = calculator.add(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
