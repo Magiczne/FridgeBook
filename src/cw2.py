@@ -1,11 +1,22 @@
+from typing import List
+
+
 class NoBitsCalculator(object):
 
-    def calculate(self, number: str) -> int:
-        if not number:
+    def calculate(self, numbers: str) -> int:
+        if not numbers:
             return 0
-        int_number = int(number)
+        str_numbers = numbers.split(';')
+        int_numbers = self.get_validated_numbers(str_numbers)
+        return sum(bin(number).count('1') for number in int_numbers)
 
-        if int_number > 255 or int_number < 0:
-            raise ValueError(f"Incorrect value: {int_number}")
+    def get_validated_numbers(self, str_numbers: List[str]):
+        numbers = []
+        for str_number in str_numbers:
+            int_number = int(str_number)
 
-        return bin(int(number)).count('1')
+            if int_number > 255 or int_number < 0:
+                raise ValueError(f"Incorrect value: {int_number}")
+
+            numbers.append(int_number)
+        return numbers

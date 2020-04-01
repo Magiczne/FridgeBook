@@ -29,6 +29,17 @@ class TestStringCalculator(unittest.TestCase):
         with pytest.raises(ValueError, match=f"Incorrect value: {invalid_number}"):
             calculator.calculate(invalid_number)
 
+    @parameterized.expand([
+        ["2;4;8", 3],
+        ["3;7", 5],
+        ["1;1;1;1;0;3;1;3", 9],
+    ])
+    def test_calculate_should_calculate_no_of_1_for_multiple_numbers_valid(self, numbers, expected):
+        calculator = NoBitsCalculator()
+
+        result = calculator.calculate(numbers)
+        self.assertEqual(expected, result)
+
 
 if __name__ == '__main__':
     unittest.main()
