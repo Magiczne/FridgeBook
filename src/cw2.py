@@ -1,12 +1,16 @@
+import re
 from typing import List
 
 
 class NoBitsCalculator(object):
 
+    def __init__(self):
+        self.delims = [';', ' ']
+
     def calculate(self, numbers: str) -> int:
         if not numbers:
             return 0
-        str_numbers = numbers.split(';')
+        str_numbers = re.split('|'.join(self.delims), numbers)
         int_numbers = self.get_validated_numbers(str_numbers)
         return sum(bin(number).count('1') for number in int_numbers)
 
