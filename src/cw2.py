@@ -5,11 +5,16 @@ from typing import List
 class NoBitsCalculator(object):
 
     def __init__(self):
+        self.general_regex = r"^[0-9;\s]*$"
         self.delims = [';', '\s+']
 
     def calculate(self, numbers: str) -> int:
         if not numbers:
             return 0
+
+        if not re.match(self.general_regex, numbers):
+            raise ValueError("Incorrect input format")
+
         str_numbers = re.split('|'.join(self.delims), numbers)
         int_numbers = self.get_validated_numbers(str_numbers)
         return sum(bin(number).count('1') for number in int_numbers)

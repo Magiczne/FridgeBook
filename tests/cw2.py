@@ -20,7 +20,6 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(expected, result)
 
     @parameterized.expand([
-        ["-1"],
         ["256"],
         ["10200"],
     ])
@@ -61,6 +60,17 @@ class TestStringCalculator(unittest.TestCase):
 
         result = calculator.calculate(numbers)
         self.assertEqual(expected, result)
+
+    @parameterized.expand([
+        ["-1"],
+        ["2, 4\n,\n  \t8"],
+        ["3..7"],
+        ["1\t1 1,1 0:3 1\n \t3"],
+    ])
+    def test_calculate_invalid_numbers_format_should_rise_error(self, invalid_numbers):
+        calculator = NoBitsCalculator()
+        with pytest.raises(ValueError, match=f"Incorrect input format"):
+            calculator.calculate(invalid_numbers)
 
 
 if __name__ == '__main__':
