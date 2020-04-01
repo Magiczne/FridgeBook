@@ -74,6 +74,19 @@ class MyTestCase(unittest.TestCase):
         # Assert
         self.assertEqual(expected, result)
 
+    @parameterized.expand([
+        ["16\t\t ]80"],
+        ["40\t \t \t \t3'72"],
+        ["128   \n 32[    64"]
+    ])
+    def test_count_no_of_bits_throws_exception_when_delimiter_is_improper(self, numbers):
+        # Arrange
+        bits_calculator = BitsCalculator()
+        # Assert
+        with self.assertRaises(Exception):
+            # Act
+            bits_calculator.count_no_of_bits_1(numbers)
+
 
 if __name__ == '__main__':
     unittest.main()
