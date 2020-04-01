@@ -12,7 +12,17 @@ class TestStringCalculator(unittest.TestCase):
         ["1", 1],
         ["1,2", 3],
     ])
-    def test_add_up_to_two_numbers(self, numbers, expected):
+    def test_add_up_to_two_numbers_valid(self, numbers, expected):
+        calculator = Calculator()
+
+        result = calculator.add(numbers)
+        self.assertEqual(expected, result)
+
+    @parameterized.expand([
+        ["5,7,10", 22],
+        ["1,3,5,8", 17],
+    ])
+    def test_add_up_to_any_numbers_valid(self, numbers, expected):
         calculator = Calculator()
 
         result = calculator.add(numbers)
