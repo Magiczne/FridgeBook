@@ -6,7 +6,7 @@ class BitsCalculator:
         result = 0
         while given_number:
             temp = given_number % 2
-            if temp == 1:
+            if temp:
                 result += 1
             given_number = int(given_number / 2)
 
