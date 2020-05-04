@@ -1,15 +1,21 @@
-- [8] User should be able to access the usable application through Internet.
-- [13] System should have a functionality of creating an account for every user.
-    User can go to registration form.
-- [8] User should be able to add notes, which will be visible for other users.
-    Notes available for everyone in the system.
-- [8] User should be able to mark notes as read.
-- [20] User should have a possibility of being notified about already read notes by another user.
-- [13] User should be able to remove the note from the fridge so that it won't be visible nor accessible in the future.
-- [13] User should be able to view all his previous notes.
-- [13] User should be able to edit his notes.
-- [40] User should be able to download notes which are currently available in markdown format.
-- [100] User should be able to create virtual fridge on which he could share notes with others.
-- [100] User should be able to synchronize notes with google keep.
-- [5] Notes should have a date of addition, but only in database.
-- [5] Admin should be able to manage users
+01. [SP: 8]   [Czas: 4h] User should be able to access the usable application through Internet.
+02. [SP: 13]  [Czas: 6h 30m] System should have a functionality of creating an account for every user. User can go to registration form.
+03. [SP: 8]   [Czas: 4h] User should be able to add notes, which will be visible for other users. Notes available for everyone in the system.
+04. [SP: 8]   [Czas: 4h] User should be able to mark notes as read.
+05. [SP: 20]  [Czas: 10h] User should have a possibility of being notified about already read notes by another user.
+06. [SP: 13]  [Czas: 6h 30m] User should be able to remove the note from the fridge so that it won't be visible nor accessible in the future.
+07. [SP: 13]  [Czas: 6h 30m] User should be able to view all his previous notes.
+08. [SP: 13]  [Czas: 6h 30m] User should be able to edit his notes.
+09. [SP: 40]  [Czas: 20h] User should be able to download notes which are currently available in markdown format.
+10. [SP: 100] [Czas: 50h] User should be able to create virtual fridge on which he could share notes with others.
+11. [SP: 100] [Czas: 50h] User should be able to synchronize notes with google keep.
+12. [SP: 5]   [Czas: 2h 30min] Notes should have a date of addition, but only in database.
+13. [SP: 5]   [Czas: 2h 30min] Admin should be able to manage users
+
+Referencyjna: 04
+Sumarycznie: 346SP -> 173h
+Mamy dostępne: 86h 30m
+1SP -> 30 min
+
+Wybrane do releasu 1:
+01, 02, 03, 04, 13
