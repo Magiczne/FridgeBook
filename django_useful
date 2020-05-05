@@ -1,0 +1,7 @@
+python3.8 manage.py makemigrations // creates migrations based on models
+python3.8 manage.py migrate // migrates database
+python3.8 manage.py runserver // runs the server
+python3.8 manage.py createsuperuser // creates admin user
+
+to enable django support in PyCharm configure
+Settings -> Languages & Frameworks -> Django
