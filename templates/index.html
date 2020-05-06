@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>FridgeBook</h1>
+    <h2><strong>Notes number:</strong> {{ num_notes }}</h2>
+    {% if notes %}
+        <ul>
+            {% for note in notes %}
+                <li>
+                    {{ note.created_at }} {{ note.content }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are yet no notes.</p>
+    {% endif %}
+{% endblock %}
