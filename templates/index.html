@@ -6,9 +6,11 @@
     {% if notes %}
         <ul>
             {% for note in notes %}
-                <li>
-                    {{ note.created_at }} {{ note.content }}
-                </li>
+            <div>
+                <div>{{ note.title }}</div>
+                <div>{{ note.content }}</div>
+                <div>{{ note.created_at }} {{ note.user }}</div>
+            </div>
             {% endfor %}
         </ul>
     {% else %}
