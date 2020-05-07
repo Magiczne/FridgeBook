@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>FridgeBook</h1>
+    <h1 class="title">FridgeBook</h1>
     <h2><strong>Notes number:</strong> {{ num_notes }}</h2>
     {% if notes %}
         <ul>
@@ -14,9 +14,9 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>There are yet no notes.</p>
+        <p>There aren't any notes</p>
     {% endif %}
-
+    <a class="test" href="notes/add" style="">Create note</a>
 
 
 {% endblock %}

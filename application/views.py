@@ -42,4 +42,11 @@ def register(request):
     return HttpResponse(template.render(context, request))
 
 
-#def topic(request, )
+def add_note(request):
+    notes = Note.objects.all()
+
+    context = {
+        'notes': notes
+    }
+
+    return render(request, 'notes/add.html', context=context)
