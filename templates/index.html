@@ -3,6 +3,7 @@
 {% block content %}
     <h1 class="title">FridgeBook</h1>
     <h2><strong>Notes number:</strong> {{ num_notes }}</h2>
+    <a class="test" href="{% url 'add_note' %}">Create note</a>
     {% if notes %}
         <ul>
             {% for note in notes %}
@@ -16,7 +17,4 @@
     {% else %}
         <p>There aren't any notes</p>
     {% endif %}
-    <a class="test" href="notes/add" style="">Create note</a>
-
-
 {% endblock %}

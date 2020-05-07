@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
-# Create your views here.
-from application.models import Note
 from django.contrib.auth import login, authenticate
 from .forms import RegisterForm
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+
+from application.models import Note
+from application.forms import NoteForm
 
 
 @login_required(login_url='/login/')
@@ -23,6 +23,7 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+
 
 def register(request):
     if request.method == 'POST':
@@ -42,11 +43,18 @@ def register(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url='/login/')
 def add_note(request):
-    notes = Note.objects.all()
-
-    context = {
-        'notes': notes
-    }
-
+    if request.method == 'POST':
+        note = Note()
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            note.user = request.user
+            note = form.save(commit=False)
+            note.save()
+            return redirect('/application/')
+    else:
+        form = NoteForm()
+    
+    context = {'form': form}
     return render(request, 'notes/add.html', context=context)
