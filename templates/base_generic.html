@@ -16,6 +16,11 @@
         <div class="col-sm-2">
             {% block sidebar %}
             <ul class="sidebar-nav">
+                    {% if user.is_authenticated %}
+                        <p><a href="{% url 'logout' %}">Logout</a></p>
+                    {% else %}
+                        <a href="{% url 'login' %}">Login</a>
+                    {% endif %}
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="">All books</a></li>
                 <li><a href="">All authors</a></li>

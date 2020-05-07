@@ -6,13 +6,17 @@
     {% if notes %}
         <ul>
             {% for note in notes %}
-                <li class="test">
-                    {{ note.title }} {{ note.content }} {{ note.created_at }}
-                </li>
+            <div>
+                <div>{{ note.title }}</div>
+                <div>{{ note.content }}</div>
+                <div>{{ note.created_at }} {{ note.user }}</div>
+            </div>
             {% endfor %}
         </ul>
     {% else %}
         <p>There aren't any notes</p>
     {% endif %}
     <a class="test" href="notes/add" style="">Create note</a>
+
+
 {% endblock %}
