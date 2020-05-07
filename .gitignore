@@ -72,6 +72,8 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 =======
+=======
+>>>>>>> 7e24f89f6e2ccf055cfe8820707fdb9a1a6ee130
 # Created by https://www.gitignore.io
 # Modified by Michał Kleszczyński
 
@@ -297,4 +299,7 @@ $RECYCLE.BIN/
 # -----------------------
 
 # Django
+<<<<<<< HEAD
+*.pyc
+=======
 *.pyc

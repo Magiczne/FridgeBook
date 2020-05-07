@@ -7,7 +7,10 @@ from django.contrib.auth import login, authenticate
 from .forms import RegisterForm
 from django.shortcuts import render, redirect
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='/accounts/login/')
 def index(request):
     """View function for home page of site."""
 
@@ -37,3 +40,13 @@ def register(request):
     template = loader.get_template('register.html')
     context = {'form': form}
     return HttpResponse(template.render(context, request))
+
+
+def add_note(request):
+    notes = Note.objects.all()
+
+    context = {
+        'notes': notes
+    }
+
+    return render(request, 'notes/add.html', context=context)
