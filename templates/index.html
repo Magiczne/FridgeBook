@@ -1,20 +1,27 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1 class="title">FridgeBook</h1>
-    <h2><strong>Notes number:</strong> {{ num_notes }}</h2>
-    <a class="test" href="{% url 'add_note' %}">Create note</a>
-    {% if notes %}
-        <ul>
-            {% for note in notes %}
-            <div>
-                <div>{{ note.title }}</div>
-                <div>{{ note.content }}</div>
-                <div>{{ note.created_at }} {{ note.user }}</div>
+<h1 class="title">FridgeBook</h1>
+<h2><strong>Notes number:</strong> {{ num_notes }}</h2>
+<a class="btn hover-slide-up" href="{% url 'add_note' %}">
+    <span>Create note</span>
+</a>
+{% if notes %}
+<div class="note-wrapper">
+    <ul class="note-container">
+        {% for note in notes %}
+        <li class="note">
+            <div class="note-content-container">
+                <p class="note-title">{{ note.title }}</p>
+                <p class="note-content">{{ note.content }}</p>
             </div>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There aren't any notes</p>
-    {% endif %}
+            <p class="note-footer"><span class="note-time">{{ note.created_at }}</span> by <span
+                    class="note-user">{{ note.user }}</span></p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% else %}
+<p>There aren't any notes</p>
+{% endif %}
 {% endblock %}
