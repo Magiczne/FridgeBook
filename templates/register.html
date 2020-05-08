@@ -1,26 +1,22 @@
 {% extends 'base_generic.html' %}
 {% block content %}
-    <div class="heading2">Register</div>
+    <div class="title">Register</div>
         <form method="post">
             {% csrf_token %}
-            <div class="login">username:</div>
-            <div class="login">{{ form.username }}</div>
+                <div>username:</div>
+            {{ form.username }}
             {{ form.errors.username }}
-            <div class="login">email:</div>
-            <div class="login">{{ form.email }}</div>
+            <div>email:</div>
+            {{ form.email }}
             {{ form.errors.email }}
-            <div class="login">password:</div>
-            <div class="login">{{ form.password1 }}</div>
+            <div>password:</div>
+            {{ form.password1 }}
             {{ form.errors.password1 }}
-            <div class="login">password confirmation:</div>
-            <div class="login">{{ form.password2 }}</div>
+            <div>password confirmation:</div>
+            {{ form.password2 }}
             {{ form.errors.password2 }}
-            <div class="login">
-                <div class="buttons-panel2">
-                    <form action="/forum">
-                        <button type="submit">Register</button>
-                    </form>
-                </div>
+            <div>
+            <button class="btn hover-slide-up"  type="submit"><span>Register</span></button>
             </div>
     </form>
 {% endblock %}
