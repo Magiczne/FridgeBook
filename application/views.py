@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm
+from .forms import RegisterForm, UpdateNoteForm
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -23,6 +23,23 @@ def index(request):
     }
 
     return render(request, 'index.html', context=context)
+
+
+@login_required(login_url='/login/')
+def update_note(request, pk):
+    if request.method == 'POST':
+        note = Note.objects.get(id=pk)
+        form = UpdateNoteForm(request.POST, instance=note)
+        if form.is_valid():
+            temp = request.POST.getlist(note.title)
+            if len(temp):
+                note.is_read = True
+            else:
+                note.is_read = False
+            form.save()
+            return redirect('/application/')
+    else:
+        form = UpdateNoteForm()
 
 
 def register(request):
@@ -55,6 +72,6 @@ def add_note(request):
             return redirect('/application/')
     else:
         form = NoteForm()
-    
+
     context = {'form': form}
     return render(request, 'notes/add.html', context=context)
