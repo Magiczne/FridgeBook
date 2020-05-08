@@ -1,6 +1,7 @@
 from django.test import TestCase
 
-from application.forms import NoteForm
+from application.forms import NoteForm, UpdateNoteForm
+
 
 class NoteFormTest(TestCase):
     def test_form_title_label(self):
@@ -26,6 +27,7 @@ class NoteFormTest(TestCase):
     def test_valid_form(self):
         form = NoteForm(data={'title': 'title', 'content': 'content'})
         self.assertTrue(form.is_valid())
+
 
 class UpdateNoteFormTest(TestCase):
     def test_form_is_read_label(self):

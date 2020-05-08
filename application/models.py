@@ -10,6 +10,7 @@ class Note(models.Model):
     content = models.CharField(max_length=255, help_text='Enter note content')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name="User")
     created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     # Metadata
     class Meta:
