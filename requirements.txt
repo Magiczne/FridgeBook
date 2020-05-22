@@ -1,3 +1,4 @@
+cerberus
 asgiref==3.2.7
 attrs==19.3.0
 Automat==20.2.0
