@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from utils.configuration_loader import load_configuration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+configuration = load_configuration('configuration.json')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -78,7 +80,7 @@ WSGI_APPLICATION = 'fridge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, configuration["db-name"] if configuration["db-name"] else 'db.sqlite3'),
     }
 }
 
@@ -105,9 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = configuration["language-code"] if configuration["language-code"] else 'en-us'
+
+TIME_ZONE = configuration["time-zone"] if configuration["time-zone"] else 'UTC'
 
 USE_I18N = True
 

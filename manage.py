@@ -3,12 +3,8 @@
 import os
 import sys
 
-from utils.configuration_loader import load_configuration
-
 
 def main():
-    data = load_configuration('configuration.json')
-    print('Configuration:', data)
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'fridge.settings')
     try:
