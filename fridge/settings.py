@@ -19,8 +19,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-configHandler = ConfigHandler()
-configHandler.load_config()
+config_handler = ConfigHandler()
+config_handler.load_config()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '5k_29c73o8ksn9s-&r4!q20_&6m9+s%s=*=(@!bv9acr+51&a3'
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'fridge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, configHandler.get_config_value('db-name')),
+        'NAME': os.path.join(BASE_DIR, config_handler.get_config_value('db-name')),
     }
 }
 
@@ -108,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 
-LANGUAGE_CODE = configHandler.get_config_value('language-code')
+LANGUAGE_CODE = config_handler.get_config_value('language-code')
 
-TIME_ZONE = configHandler.get_config_value('time-zone')
+TIME_ZONE = config_handler.get_config_value('time-zone')
 
 USE_I18N = True
 

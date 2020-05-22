@@ -15,8 +15,10 @@ schema = {
 
 
 class ConfigHandler:
-    validator = Validator(schema)
-    configuration = load_configuration('configuration.json')
+    def __init__(self, json_file_name=None):
+        self.configuration = load_configuration(
+            json_file_name or 'configuration.json')
+        self.validator = Validator(schema)
 
     def load_config(self):
         if not self.validator.validate(self.configuration):
