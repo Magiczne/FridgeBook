@@ -11,42 +11,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from utils.configuration_loader import load_configuration
-from cerberus import Validator
-import json
+from fridge.config_handler import ConfigHandler
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-default_configuration = {
-    "db-name": "db.sqlite3",
-    "language-code": "en-us",
-    "time-zone": "UTC"
-}
-schema = {
-    "db-name": {'type': 'string', 'empty': False},
-    "language-code": {'type': 'string', 'empty': False},
-    "time-zone": {'type': 'string', 'empty': False}
-}
-
-validator = Validator(schema)
-configuration = load_configuration('configuration.json')
-if not validator.validate(configuration):
-    print('Validation errors: ' + json.dumps(validator.errors))
-
-
-def get_configuration_value(key):
-    if not any(key == k for k in schema):
-        raise Exception(f'Specified key: {key} is not supported')
-
-    if validator.errors.get(key):
-        return default_configuration[key]
-
-    return configuration[key]
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+configHandler = ConfigHandler()
+configHandler.load_config()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '5k_29c73o8ksn9s-&r4!q20_&6m9+s%s=*=(@!bv9acr+51&a3'
@@ -106,7 +80,7 @@ WSGI_APPLICATION = 'fridge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, get_configuration_value('db-name')),
+        'NAME': os.path.join(BASE_DIR, configHandler.get_config_value('db-name')),
     }
 }
 
@@ -134,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 
-LANGUAGE_CODE = get_configuration_value('language-code')
+LANGUAGE_CODE = configHandler.get_config_value('language-code')
 
-TIME_ZONE = get_configuration_value('time-zone')
+TIME_ZONE = configHandler.get_config_value('time-zone')
 
 USE_I18N = True
 
