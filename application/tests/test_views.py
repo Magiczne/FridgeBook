@@ -1,7 +1,5 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
-from django.contrib.auth.models import AnonymousUser, User
-
-from application.views import add_note
 
 
 class IndexTest(TestCase):
@@ -60,4 +58,5 @@ class AddNoteTest(TestCase):
         response = self.client.post(self.url, {'title': 'title', 'content': 'content'})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/application/')
+
         

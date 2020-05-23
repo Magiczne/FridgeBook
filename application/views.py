@@ -1,13 +1,13 @@
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm, UpdateNoteForm
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.contrib.auth.decorators import login_required
 
-from application.models import Note
 from application.forms import NoteForm
+from application.models import Note
+from .forms import RegisterForm, UpdateNoteForm
+import logging
 
 
 @login_required(login_url='/login/')
@@ -38,8 +38,8 @@ def update_note(request, pk):
                 note.is_read = False
             form.save()
             return redirect('/application/')
-    else:
-        form = UpdateNoteForm()
+
+    logging.getLogger("fridge.update_note").warning("Invalid request")
 
 
 def register(request):
