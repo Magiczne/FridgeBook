@@ -1,9 +1,12 @@
 <!-- templates/registration/login.html -->
+{% extends 'base_generic.html' %}
+{% block content %}
 
 <h2>Login</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">Login</button>
-  <input class="btn btn-success" type="button" value="Register" onclick="location.href='{% url 'register' %}'"  />
+  <button class="btn hover-slide-up" type="submit"><span>Login</span></button>
+  <button class="btn hover-slide-up" type="submit" onclick="location.href='{% url 'register' %}'" ><span>Register</span></button>
 </form>
+{% endblock %}
