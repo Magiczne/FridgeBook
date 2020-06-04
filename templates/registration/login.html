@@ -2,11 +2,11 @@
 {% extends 'base_generic.html' %}
 {% block content %}
 
-<h2>Login</h2>
+<h2 id="login-title">Login</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button class="btn hover-slide-up" type="submit"><span>Login</span></button>
-  <button class="btn hover-slide-up" type="submit" onclick="location.href='{% url 'register' %}'" ><span>Register</span></button>
+  <button id="login" class="btn hover-slide-up" type="submit"><span>Login</span></button>
+  <button id="register" class="btn hover-slide-up" type="submit" onclick="location.href='{% url 'register' %}'" ><span>Register</span></button>
 </form>
 {% endblock %}

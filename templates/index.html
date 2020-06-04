@@ -2,8 +2,8 @@
 
 {% block content %}
 <h1 class="title">FridgeBook</h1>
-<h2><strong>Notes number:</strong> {{ num_notes }}</h2>
-<a class="btn hover-slide-up" href="{% url 'add_note' %}">
+<h2 id="notes-number"><strong>Notes number:</strong> {{ num_notes }}</h2>
+<a id="add-note" class="btn hover-slide-up" href="{% url 'add_note' %}">
     <span>Create note</span>
 </a>
 {% if notes %}
