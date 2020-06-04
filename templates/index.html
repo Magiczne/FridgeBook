@@ -10,6 +10,7 @@
 <div class="note-wrapper">
     <ul class="note-container">
         {% for note in notes %}
+        <div>
         <li class="note" {% if note.is_read %} style="opacity: 0.5;"{% endif %}>
             <div class="note-content-container">
                 <p class="note-title">{{ note.title }}</p>
@@ -23,6 +24,12 @@
                     </label>
                 </form>
         </li>
+        {% if user == note.user %}
+        <a class="btn hover-slide-up" href="{% url 'edit_note' note.id %}">
+            <span>Edit</span>
+        </a>
+        {% endif %}
+    </div>
         {% endfor %}
     </ul>
 </div>
