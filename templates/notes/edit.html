@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2 class="title">Edit note</h2>
+<form action="/application/notes/edit/{{ note.id }}" method="post">
+    {% csrf_token %}
+    <p>Title</p>
+    {{ form.title }}
+    <p>Content</p>
+    {{ form.content }}
+    <br />
+    <button class="btn hover-slide-up" type="submit"><span>Edit note</span></button>
+</form>
+{% endblock %}

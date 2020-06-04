@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template import loader
 
 from application.forms import NoteForm
@@ -75,3 +75,21 @@ def add_note(request):
 
     context = {'form': form}
     return render(request, 'notes/add.html', context=context)
+
+
+@login_required(login_url='/login/')
+def edit_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.user != note.user:
+        return redirect('/application/')
+    if request.method == 'POST':
+        form = NoteForm(request.POST, instance=note)
+        if form.is_valid():
+            note = form.save(commit=False)
+            note.save()
+            return redirect('/application/')
+    else:
+        form = NoteForm(initial={'title': note.title, 'content': note.content})
+    
+    context = {'form': form, 'note': note}
+    return render(request, 'notes/edit.html', context=context)
