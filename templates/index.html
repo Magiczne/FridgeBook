@@ -7,7 +7,7 @@
     <span>Create note</span>
 </a>
 {% if notes %}
-<div class="note-wrapper">
+<div id = "note-wrapper" class="note-wrapper">
     <ul class="note-container">
         {% for note in notes %}
         <div>
@@ -23,6 +23,7 @@
 
                     </label>
                 </form>
+            </div>
         </li>
         {% if user == note.user %}
         <a id="edit-note" class="btn hover-slide-up" href="{% url 'edit_note' note.id %}">
