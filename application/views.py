@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -7,7 +9,6 @@ from django.template import loader
 from application.forms import NoteForm
 from application.models import Note
 from .forms import RegisterForm, UpdateNoteForm
-import logging
 
 
 @login_required(login_url='/login/')
@@ -90,6 +91,15 @@ def edit_note(request, note_id):
             return redirect('/application/')
     else:
         form = NoteForm(initial={'title': note.title, 'content': note.content})
-    
+
     context = {'form': form, 'note': note}
     return render(request, 'notes/edit.html', context=context)
+
+
+@login_required(login_url='/login/')
+def delete_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    if request.user != note.user:
+        return redirect('/application/')
+    note.delete()
+    return redirect('/application/')

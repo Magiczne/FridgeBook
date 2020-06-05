@@ -61,7 +61,7 @@ class AddNoteTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/application/')
 
-        
+
 class EditNoteTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='ala', email='ala@makota.com', password='ala-ma-kota-333')
@@ -118,3 +118,48 @@ class EditNoteTest(TestCase):
         self.assertEqual(note.title, 'new note title')
         self.assertEqual(note.content, 'new note content')
         self.assertEqual(note.user, self.user)
+
+
+class DeleteNoteTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='ala', email='ala@makota.com', password='ala-ma-kota-333')
+        self.url = '/application/notes/delete/1'
+        self.note = Note.objects.create(title='new note', content='note content', user=self.user)
+
+    def login(self):
+        self.client.login(username='ala', email='ala@makota.com', password='ala-ma-kota-333')
+
+    def login_as_different(self):
+        user = User.objects.create_user(username='ola', email='ola@makota.com', password='securePass343')
+        self.client.login(username='ola', email='ola@makota.com', password='securePass343')
+
+    def test_delete_no_login(self):
+        response = self.client.delete(self.url)
+
+        self.assertTrue(Note.objects.get(id='1') is not None)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/login/?next=/application/notes/delete/1')
+
+    def test_delete_different_login(self):
+        self.login_as_different()
+        response = self.client.delete(self.url)
+
+        self.assertTrue(Note.objects.get(id='1') is not None)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/application/')
+
+    def test_delete_no_note(self):
+        self.login()
+        response = self.client.delete('/application/notes/delete/100')
+
+        self.assertTrue(Note.objects.get(id='1') is not None)
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete(self):
+        self.login()
+        response = self.client.delete(self.url)
+
+        with self.assertRaises(Note.DoesNotExist):
+            Note.DoesNotExist, Note.objects.get(id='1')
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, '/application/')
