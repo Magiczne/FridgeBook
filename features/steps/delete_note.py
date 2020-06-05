@@ -1,4 +1,5 @@
 from behave import given, when, then
+from selenium.common.exceptions import NoSuchElementException
 
 from application.tests.bdd.note import NoteFactory
 from application.tests.bdd.user import UserFactory
@@ -29,7 +30,7 @@ def step_impl(context):
 def step_impl(context):
     br = context.browser
     assert br.find_element_by_id('note to delete') is not None
-    assert br.find_element_by_id('delete-note-link2') is None
+    assert_no_element_of_id(br, 'delete-note-link2')
     br.get(context.base_url + '/application/notes/delete/2')
 
 
@@ -70,5 +71,14 @@ def step_impl(context):
 def step_impl(context):
     br = context.browser
     assert br.current_url.endswith('/application/')
-    assert br.find_element_by_id('note to delete') is None
-    assert br.find_element_by_id('delete-note-link3') is None
+    assert_no_element_of_id(br, 'note to delete')
+    assert_no_element_of_id(br, 'delete-note-link3')
+
+
+def assert_no_element_of_id(br, id):
+    no_element = False
+    try:
+        br.find_element_by_id(id)
+    except NoSuchElementException:
+        no_element = True
+    assert no_element
