@@ -35,7 +35,7 @@ def step_impl(context):
     br = context.browser
     print(br.current_url)
 
-    assert br.current_url.endswith('/notes/edit/1')
+    assert br.current_url.endswith('/notes/edit/2')
     assert br.find_element_by_name('title') is not None
     assert br.find_element_by_name('content') is not None
 
@@ -64,20 +64,19 @@ def step_impl(context):
 @when('I try to edit a note which is not mine')
 def step_impl(context):
     br = context.browser
-    br.get(context.base_url + '/application/notes/edit/2')
+    br.get(context.base_url + '/application/notes/edit/3')
 
 
 @then('I am redirected to the main page')
 def step_impl(context):
     br = context.browser
-
     assert br.current_url.endswith('/application/')
 
 
 @when('I try to edit a note with content')
 def step_impl(context):
     br = context.browser
-    br.get(context.base_url + '/application/notes/edit/3')
+    br.get(context.base_url + '/application/notes/edit/4')
 
     br.find_element_by_name('title').send_keys('new title')
     br.find_element_by_name('content').send_keys('new content')
