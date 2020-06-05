@@ -1,43 +1,68 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1 class="title">FridgeBook</h1>
-<h2 id="notes-number"><strong>Notes number:</strong> {{ num_notes }}</h2>
-<a id="add-note" class="btn hover-slide-up" href="{% url 'add_note' %}">
-    <span>Create note</span>
-</a>
-{% if notes %}
-<div id = "note-wrapper" class="note-wrapper">
-    <ul class="note-container">
-        {% for note in notes %}
-        <div>
-        <li  {% if note.is_read %} class="note note-read" {% else %} class="note" {% endif %}>
-            <div class="note-content-container">
-                <p class="note-title">{{ note.title }}</p>
-                <p class="note-content">{{ note.content }}</p>
-                    <form method="POST" action="notes/update/{{ note.id }}">
-                    {% csrf_token %}
-                    <label for="{{ note.title }}" class="note-label" >
-                        <input type="checkbox" id="{{ note.title }}" name="{{ note.title }}" class="note-checkbox" {% if note.is_read %} checked{% endif %} onChange="this.form.submit()">
-                                            Mark as read
 
-                    </label>
-                </form>
-            </div>
-        </li>
-        {% if user == note.user %}
-        <a id="edit-note" class="btn hover-slide-up" href="{% url 'edit_note' note.id %}">
-            <span>Edit</span>
-        </a>
-        <a id="delete-note-link{{ note.id }}" class="btn hover-slide-up red" href="{% url 'delete_note' note.id %}">
-            <span>Delete</span>
-        </a>
-        {% endif %}
+<div class="row mt-5">
+    <div class="col-sm d-flex">
+        <h3 id="notes-number">Notes count: {{ num_notes }}</h3>
     </div>
-        {% endfor %}
-    </ul>
+    <div class="col-sm d-flex justify-content-end">
+        <a id="add-note"
+           class="btn btn-success"
+           href="{% url 'add_note' %}">
+            Create note
+        </a>
+    </div>
 </div>
-{% else %}
-<p>There aren't any notes</p>
-{% endif %}
+
+<div class="row mt-2 note-wrapper"
+     id="note-wrapper">
+    {% if notes %}
+        {% for note in notes %}
+            <div class="col-sm-6 col-lg-3">
+                <div {% if note.is_read %} class="card note note-read" {% else %} class="card note" {% endif %}
+                     {% if note.is_read %} style="opacity: 0.5" {% endif %}>
+                    <div class="card-header">
+                        <form method="POST" action="notes/update/{{ note.id }}">
+                            {% csrf_token %}
+                            <label for="{{ note.title }}"
+                                   class="note-label d-flex align-items-center justify-content-end mb-0">
+                                <input type="checkbox"
+                                       class="mr-2 note-checkbox"
+                                       id="{{ note.title }}"
+                                       name="{{ note.title }}"
+                                       {% if note.is_read %} checked {% endif %}
+                                       onChange="this.form.submit()" />
+                                Read
+                            </label>
+                        </form>
+                    </div>
+                    <div class="card-body note-content-container">
+                        <h5 class="card-title note-title">{{ note.title }}</h5>
+                        <p class="card-text note-content">{{ note.content }}</p>
+                    </div>
+                    {% if user == note.user %}
+                        <div class="card-footer">
+                            <a id="edit-note"
+                               class="btn btn-primary"
+                               href="{% url 'edit_note' note.id %}">
+                                Edit
+                            </a>
+                            <a id="delete-note-link{{ note.id }}"
+                               class="btn btn-danger"
+                               href="{% url 'delete_note' note.id %}">
+                                Delete
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-sm d-flex justify-content-center">
+            <h5>There are no notes on this fridge</h5>
+        </div>
+    {% endif %}
+</div>
+
 {% endblock %}

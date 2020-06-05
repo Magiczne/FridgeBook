@@ -1,14 +1,51 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h2 class="title">Create a new note</h2>
-<form action="/application/notes/add/{{ note.id }}" method="post">
-    {% csrf_token %}
-    <p>Title</p>
-    {{ form.title }}
-    <p>Content</p>
-    {{ form.content }}
-    <br />
-    <button id ="add" class="btn hover-slide-up" type="submit"><span>Add note</span></button>
-</form>
+
+<div class="row justify-content-md-center">
+    <div class="col-sm col-lg-6">
+        <h3 class="mt-5">Create new note</h3>
+
+        <form action="/application/notes/add/{{ note.id }}"
+              method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="title">Title: </label>
+                <input type="text"
+                       class="form-control {% if form.title.errors %} is-invalid {% endif %}"
+                       id="title"
+                       name="title" />
+                {% if form.title.errors %}
+                    <ul class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="content">Content: </label>
+                <textarea class="form-control {% if form.content.errors %} is-invalid {% endif %}"
+                          id="content"
+                          name="content"
+                          rows="7"></textarea>
+                {% if form.content.errors %}
+                    <ul class="invalid-feedback">
+                        {% for error in form.content.errors %}
+                            <li><strong>{{ error|escape }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <button id="add"
+                    class="btn btn-primary"
+                    type="submit">
+                Save
+            </button>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
