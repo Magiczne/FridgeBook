@@ -1,8 +1,7 @@
 from behave import given, when, then
-from application.tests.bdd.user import UserFactory
-from application.tests.bdd.note import NoteFactory
 
-import time
+from application.tests.bdd.note import NoteFactory
+from application.tests.bdd.user import UserFactory
 
 
 @given('a logged in user who is an owner of a note')
@@ -35,7 +34,7 @@ def step_impl(context):
     br = context.browser
     print(br.current_url)
 
-    assert br.current_url.endswith('/notes/edit/2')
+    assert br.current_url.endswith('/notes/edit/4')
     assert br.find_element_by_name('title') is not None
     assert br.find_element_by_name('content') is not None
 
@@ -64,7 +63,7 @@ def step_impl(context):
 @when('I try to edit a note which is not mine')
 def step_impl(context):
     br = context.browser
-    br.get(context.base_url + '/application/notes/edit/3')
+    br.get(context.base_url + '/application/notes/edit/5')
 
 
 @then('I am redirected to the main page')
@@ -76,7 +75,7 @@ def step_impl(context):
 @when('I try to edit a note with content')
 def step_impl(context):
     br = context.browser
-    br.get(context.base_url + '/application/notes/edit/4')
+    br.get(context.base_url + '/application/notes/edit/6')
 
     br.find_element_by_name('title').send_keys('new title')
     br.find_element_by_name('content').send_keys('new content')
